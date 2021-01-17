@@ -23,7 +23,7 @@ This repository provides a pip requirements.txt file that can be used to install
 ## Usage Example
 ```python
 from pm4py.objects.petri.importer import importer as pnml_importer
-from similarity_resonance.src.similarity-resonance import apply as sim_res
+from similarity_resonance.src.similarity_resonance import apply as sim_res
 from similarity_resonance.src.matching import match_single
 
 petri1 = pnml_importer.apply('link/to/petri/net/1')
