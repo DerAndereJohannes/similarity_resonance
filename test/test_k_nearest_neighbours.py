@@ -1,6 +1,6 @@
 import pytest
-import simres.src.k_nearest_neighbours as knn
-from simres.src.objects.knn_node import KnnNode
+import similarity_resonance.src.k_nearest_neighbours as knn
+from similarity_resonance.src.objects.knn_node import KnnNode
 from pm4py.objects.petri.importer import importer as pnml_importer
 from pm4py.algo.discovery.footprints import algorithm as footprint_discovery
 
