@@ -11,9 +11,9 @@ This repository provides a pip requirements.txt file that can be used to install
 
 **WARNING:** To compute the initial label similarity, I have chosen to use spacy along with the large model. This will take some time to download. Installing through the requirements.txt file will automatically download the additional module. If manually installing the dependencies, make sure to also get this module from [here.](https://spacy.io/models/en)
 ## Parameters
-**model1:** Source model
+**model1:** Source model (Petri Net)
 
-**model2:** Target model
+**model2:** Target model (Petri Net)
 
 **a:** defines how much the similarity value should rely on the global contextual similarity. 0 is not at all, 1.0 is all of it. a ∈ [0, 1]
 
