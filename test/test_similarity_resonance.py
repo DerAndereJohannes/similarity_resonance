@@ -1,6 +1,6 @@
 import pytest
 from pm4py.objects.petri.importer import importer as pnml_importer
-from simres.src.similarity_resonance import apply
+from similarity_resonance.src.similarity_resonance import apply
 
 
 class Test_SimilarityResonance:

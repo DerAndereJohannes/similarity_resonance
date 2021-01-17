@@ -1,7 +1,7 @@
-from simres.src.k_nearest_neighbours import algorithm as knn
-from simres.src.k_resonance_graph import algorithm as krg
-from simres.src.iteration import algorithm as it
-from simres.src.label_sim import algorithm as label_sim
+from similarity_resonance.src.k_nearest_neighbours import algorithm as knn
+from similarity_resonance.src.k_resonance_graph import algorithm as krg
+from similarity_resonance.src.iteration import algorithm as it
+from similarity_resonance.src.label_sim import algorithm as label_sim
 from pm4py.objects.petri.petrinet import PetriNet, Marking
 from typing import Tuple
 

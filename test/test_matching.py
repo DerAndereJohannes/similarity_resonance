@@ -1,8 +1,8 @@
 import pytest
 from collections import Counter
 from pm4py.objects.petri.importer import importer as pnml_importer
-from simres.src.similarity_resonance import apply
-from simres.src.matching import match_single, get_activities_sets
+from similarity_resonance.src.similarity_resonance import apply
+from similarity_resonance.src.matching import match_single, get_activities_sets
 
 
 class Test_Matching:

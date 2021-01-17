@@ -1,9 +1,9 @@
 import pytest
 from pm4py.objects.petri.importer import importer as pnml_importer
-import simres.src.k_resonance_graph as krg
-from simres.src.objects.krg_node import KrgNode
-from simres.src.label_sim import algorithm as labelsim
-from simres.src.k_nearest_neighbours import algorithm as knn
+import similarity_resonance.src.k_resonance_graph as krg
+from similarity_resonance.src.objects.krg_node import KrgNode
+from similarity_resonance.src.label_sim import algorithm as labelsim
+from similarity_resonance.src.k_nearest_neighbours import algorithm as knn
 
 
 class Test_KResonanceGraph:

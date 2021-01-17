@@ -1,4 +1,4 @@
-from simres.src.objects.krg_node import KrgNode
+from similarity_resonance.src.objects.krg_node import KrgNode
 from typing import Tuple
 
 
@@ -52,7 +52,7 @@ def generate_krg(siml: dict, knn_result: Tuple[list, list],
                  l_thresh: float, lmax: dict) -> list:
 
     krg_result = []
-    for match_key, match_value in siml.items():
+    for match_key in siml.keys():
         new_node = KrgNode(match_key)
         knn_src = \
             next((x for x in knn_result[0] if x.activity == match_key[0]),

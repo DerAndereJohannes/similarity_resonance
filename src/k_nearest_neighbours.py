@@ -1,5 +1,5 @@
 from pm4py.objects.petri.petrinet import PetriNet, Marking
-from simres.src.objects.knn_node import KnnNode
+from similarity_resonance.src.objects.knn_node import KnnNode
 from pm4py.algo.discovery.footprints import algorithm as footprint_discovery
 from typing import Tuple
 
@@ -38,7 +38,7 @@ def get_postset_knn(model: list, activity: str, k: int) -> list:
     new_postset = []
     current_activity = [activity]
     next_activity = []
-    for k_val in range(1, k+1):
+    for _ in range(1, k+1):
         for seq in model:
             if seq[0] in current_activity and seq[1].strip() != '':
                 new_postset.append(seq[1])
@@ -53,7 +53,7 @@ def get_preset_knn(model: list, activity: str, k: int) -> list:
     new_preset = []
     current_activity = [activity]
     next_activity = []
-    for k_val in range(1, k+1):
+    for _ in range(1, k+1):
         for seq in model:
             if seq[1] in current_activity and seq[0].strip() != '':
                 new_preset.append(seq[0])

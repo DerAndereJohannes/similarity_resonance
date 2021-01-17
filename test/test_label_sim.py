@@ -1,6 +1,6 @@
 import pytest
 from pm4py.objects.petri.importer import importer as pnml_importer
-from simres.src.label_sim import algorithm as labelsim
+from similarity_resonance.src.label_sim import algorithm as labelsim
 
 
 class Test_LabelSim:
