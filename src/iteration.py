@@ -45,8 +45,11 @@ def prepare_pow_iteration_params(krg: list, a: float,
     for i in range(matrix_shape[0]):
         sim_vector = np.append(sim_vector, sim_v[krg[i].activity_set])
         for j in range(matrix_shape[1]):
-            if i == j and not krg[i].pre_set:
+            if i == j and not krg[i].pre_set and not krg[i].post_set:
                 matrix_a[i, j] = a + ((1.0 - a) * sim_vector[-1])
+            elif krg[i].activity_set in krg[j].pre_set:
+                matrix_a[i, j] = (a * krg[j].pre_set[krg[i].activity_set]) + \
+                    ((1.0 - a) * sim_vector[-1])
             elif krg[i].activity_set in krg[j].post_set:
                 matrix_a[i, j] = (a * krg[j].post_set[krg[i].activity_set]) + \
                     ((1.0 - a) * sim_vector[-1])
