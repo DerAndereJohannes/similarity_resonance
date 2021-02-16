@@ -59,3 +59,8 @@ class KrgNode:
 
     def contains(self, match) -> bool:
         return match in self.post_set.keys() or match in self.pre_set.keys()
+
+
+    def __repr__(self):
+        return f'Node: {self.activity_set}, '\
+            f'\nOutward Arcs: {self.pre_set}{self.post_set}'

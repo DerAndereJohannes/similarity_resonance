@@ -9,3 +9,7 @@ class KnnNode:
 
     def set_postset(self, activity_list: list) -> None:
         self.post_set = activity_list
+
+    def __repr__(self):
+        return f'activity: {self.activity}, '\
+            f'preset: {self.pre_set}, postset:{self.post_set}'
