@@ -1,4 +1,5 @@
 # Similarity Resonance: Python Implementation
+[![Build Status](https://cloud.drone.io/api/badges/DerAndereJohannes/similarity_resonance/status.svg)](https://cloud.drone.io/DerAndereJohannes/similarity_resonance)
 ## Introduction
 This github repository consists of a python implementation of the 'Similarity Resonance' concept for matching activities in two process models. The goal of the algorithm is to extend the notion of label similarities and to compliment it with a global contextual similarity. The original paper and idea was authored by Nour Assy, Boudewijn F. van Dongen and Wil M.P van der Aalst at the Technical University of Eindhoven. For reference of the theory, please [take a look at the original paper (link)](https://dl.acm.org/doi/10.1145/3167132.3167138). Alternatively, you can check out the presentation slides that the author used [here (PDF download)](https://pa.win.tue.nl/wp-content/uploads/2018/09/2017_assy-october.pdf)
 

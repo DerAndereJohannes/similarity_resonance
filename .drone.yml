@@ -1,0 +1,17 @@
+kind: pipeline
+name: run_main_tests
+
+workspace:
+  base: /similarity_resonance
+
+steps:
+- name: similarity_resonance_test
+  image: python:3.9
+  commands:
+  - pip install -r requirements.txt
+  - flake8 --statistics
+  - pytest -v --ignore=test/test_label_sim.py --cov=src/ --cov-fail-under=80
+
+trigger:
+  branch:
+  - main
