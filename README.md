@@ -5,10 +5,13 @@ This github repository consists of a python implementation of the 'Similarity Re
 
 ## Installation
 The algorithm was developed on Python 3.9. The provided requirements.txt pip file can be used to install all the dependencies required for the program to work. I would suggest to install this in a virtual environment. The main dependencies are:
-- PM4Py
-- spacy (and the en_core_web_lg model (over 700MB))
-- numpy
+- pm4py
+- flake8
 - pytest
+- pytest-cov
+
+Optional:
+To get an initial label similarity value for testing, the package SpaCy was used. These dependencies are quite large (700MB+) and are therefore in a separate file (requirements_spacy.txt). If you plan to use this package, then install it too. If you are looking to use your own initial similarity measurement, make sure to make the siml output in format of a dictionary where key: Tuple[str, str] -> value: float.
 
 Make sure to place the downloaded repository into the environment's python site-packages folder. (eg. /usr/local/anaconda3/envs/myenv/lib/python3.9/site-packages/)
 
@@ -18,6 +21,8 @@ Make sure to place the downloaded repository into the environment's python site-
 
 **model2:** Target model (Petri Net)
 
+**siml:** Initial label similarity values (Dictionary | key: Tuple[str, str] -> float)
+
 **a:** defines how much the similarity value should rely on the global contextual similarity. 0 is not at all, 1.0 is all of it. a ∈ [0, 1]
 
 **k:** defines the distance from transition that should be considered a neighbour.  k ∈ N+
@@ -25,13 +30,16 @@ Make sure to place the downloaded repository into the environment's python site-
 **l_thresh:** defines the match likelihood ratio threshold to be considered similar. l_thresh ∈ [0, 1]
 ## Usage Example
 ```python
-from pm4py.objects.petri.importer import importer as pnml_importer
+import pm4py
+from similarity_resonance.src.label_sim import algorithm as label_sim
 from similarity_resonance.src.similarity_resonance import apply as sim_res
 from similarity_resonance.src.matching import match_single
 
-petri1 = pnml_importer.apply('link/to/petri/net/1')
-petri2 = pnml_importer.apply('link/to/petri/net/2')
-similarity_values = sim_res(petri1, petri2, a=0.3, k=2, l_thresh=0.2)
+petri1 = pm4py.read_petri_net('link/to/petri/net/1')
+petri2 = pm4py.read_petri_net('link/to/petri/net/2')
+siml = label_sim(petri1[0], petri2[0])
+
+similarity_values = sim_res(petri1, petri2, siml, a=0.3, k=2, l_thresh=0.2)
 top_matches = match_single(similarity_values)
 
 for key, value in top_matches.items():
