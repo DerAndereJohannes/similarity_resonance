@@ -1,3 +1,4 @@
+import os
 import pytest
 import similarity_resonance.src.k_nearest_neighbours as knn
 from similarity_resonance.src.objects.knn_node import KnnNode
@@ -9,12 +10,16 @@ class Test_KNearestNeighbours:
 
     @pytest.fixture
     def model_1(self):
-        petri_net = pnml_importer.apply('test_objects/pm1.pnml')
+        cd = os.path.dirname(os.path.realpath(__file__))
+        model_path = os.path.join(cd, 'test_objects/pm1.pnml')
+        petri_net = pnml_importer.apply(model_path)
         return petri_net
 
     @pytest.fixture
     def model_2(self):
-        petri_net = pnml_importer.apply('test_objects/pm2.pnml')
+        cd = os.path.dirname(os.path.realpath(__file__))
+        model_path = os.path.join(cd, 'test_objects/pm2.pnml')
+        petri_net = pnml_importer.apply(model_path)
         return petri_net
 
     @pytest.mark.parametrize('k,activity,expected',
@@ -60,6 +65,5 @@ class Test_KNearestNeighbours:
         assert len(knn1) == 7
         assert len(knn2) == 7
         for node1, node2 in zip(knn1, knn2):
-            print(node2.activity, node2.pre_set, node2.post_set)
             assert isinstance(node1, KnnNode)
             assert isinstance(node2, KnnNode)

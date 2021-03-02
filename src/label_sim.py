@@ -14,10 +14,10 @@ def algorithm(model1: PetriNet, model2: PetriNet) -> dict:
                 for transition2 in model2.transitions:
                     if transition2.label:
                         compare_label = re.sub(r'\([0-9]+\)', '',
-                                            transition2.label).strip()
+                                               transition2.label).strip()
                         if compare_label != '':
                             l2 = nlp(compare_label)
                             siml[transition1.label,
-                                transition2.label] = l1.similarity(l2)
+                                 transition2.label] = l1.similarity(l2)
 
     return siml

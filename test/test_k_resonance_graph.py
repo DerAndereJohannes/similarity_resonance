@@ -1,21 +1,27 @@
+import os
 import pytest
 from pm4py.objects.petri.importer import importer as pnml_importer
 import similarity_resonance.src.k_resonance_graph as krg
 from similarity_resonance.src.objects.krg_node import KrgNode
-from similarity_resonance.src.label_sim import algorithm as labelsim
 from similarity_resonance.src.k_nearest_neighbours import algorithm as knn
+from similarity_resonance.test.test_objects.siml import pm1_pm2_siml
 
 
 class Test_KResonanceGraph:
 
     @pytest.fixture
     def input_1(self):
+        cd = os.path.dirname(os.path.realpath(__file__))
+        model_path1 = os.path.join(cd, 'test_objects/pm1.pnml')
+        model_path2 = os.path.join(cd, 'test_objects/pm2.pnml')
+
         k = 1
         l_thresh = 0.2
-        pn1 = pnml_importer.apply('test_objects/pm1.pnml')
-        pn2 = pnml_importer.apply('test_objects/pm2.pnml')
-        siml = labelsim(pn1[0], pn2[0])
+        pn1 = pnml_importer.apply(model_path1)
+        pn2 = pnml_importer.apply(model_path2)
+        siml = pm1_pm2_siml
         knn_result = knn(pn1, pn2, k)
+
         return siml, knn_result, l_thresh
 
     def test_krg_lmax(self, input_1):

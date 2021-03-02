@@ -1,3 +1,4 @@
+import os
 import pytest
 from pm4py.objects.petri.importer import importer as pnml_importer
 from similarity_resonance.src.label_sim import algorithm as labelsim
@@ -7,38 +8,48 @@ class Test_LabelSim:
 
     @pytest.fixture
     def model_indep(self):
-        petri_net, *_ = pnml_importer.apply('test_objects/figure1.pnml')
+        cd = os.path.dirname(os.path.realpath(__file__))
+        model_path = os.path.join(cd, 'test_objects/figure1.pnml')
+        petri_net, *_ = pnml_importer.apply(model_path)
         return petri_net
 
     @pytest.fixture
     def model_1(self):
-        petri_net, *_ = pnml_importer.apply('test_objects/pm1.pnml')
+        cd = os.path.dirname(os.path.realpath(__file__))
+        model_path = os.path.join(cd, 'test_objects/pm1.pnml')
+        petri_net, *_ = pnml_importer.apply(model_path)
         return petri_net
 
     @pytest.fixture
     def model_2(self):
-        petri_net, *_ = pnml_importer.apply('test_objects/pm2.pnml')
+        cd = os.path.dirname(os.path.realpath(__file__))
+        model_path = os.path.join(cd, 'test_objects/pm2.pnml')
+        petri_net, *_ = pnml_importer.apply(model_path)
         return petri_net
 
     @pytest.fixture
     def model_3(self):
-        petri_net, im, fm = pnml_importer.apply('test_objects/bc1.pnml')
-        return (petri_net, im, fm)
+        cd = os.path.dirname(os.path.realpath(__file__))
+        model_path = os.path.join(cd, 'test_objects/bc1.pnml')
+        petri_net, *_ = pnml_importer.apply(model_path)
+        return petri_net
 
     @pytest.fixture
     def model_4(self):
-        petri_net, im, fm = pnml_importer.apply('test_objects/bc2.pnml')
-        return (petri_net, im, fm)
+        cd = os.path.dirname(os.path.realpath(__file__))
+        model_path = os.path.join(cd, 'test_objects/bc2.pnml')
+        petri_net, *_ = pnml_importer.apply(model_path)
+        return petri_net
 
     def test_labelsim_spacy_double(self, model_1, model_2):
         siml = labelsim(model_1, model_2)
         assert isinstance(siml, dict)
         assert len(siml.keys()) == 49
-        assert siml['Get on Train', 'start'] == 0.6024283617220695
+        assert round(siml['Get on Train', 'start'], 3) == 0.602
         assert siml['start', 'start'] == 1.0
-        assert siml['Enter Barrier', 'Enter Train'] == 0.6230753311102485
+        assert round(siml['Enter Barrier', 'Enter Train'], 3) == 0.623
 
     def test_labelsim_spacy_invis_transitions(self, model_3, model_4):
-        siml = labelsim(model_3[0], model_4[0])
+        siml = labelsim(model_3, model_4)
         assert isinstance(siml, dict)
         assert len(siml.keys()) == 500
