@@ -1,4 +1,7 @@
 class KrgNode:
+    """K-Resonance Graph node representation. Activity set = Node,
+    pre/postset = outgoing arcs.
+    """
     def __init__(self, activity):
         self.activity_set = activity
         self.pre_set = {}
@@ -59,7 +62,6 @@ class KrgNode:
 
     def contains(self, match) -> bool:
         return match in self.post_set.keys() or match in self.pre_set.keys()
-
 
     def __repr__(self):
         return f'Node: {self.activity_set}, '\

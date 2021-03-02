@@ -9,6 +9,24 @@ from typing import Tuple
 def apply(model1: Tuple[PetriNet, Marking, Marking],
           model2: Tuple[PetriNet, Marking, Marking],
           siml: dict, a: float, k: int, l_thresh: float) -> dict:
+    """Similarity Resonance Algorithm. Main goal of finding the similarity
+    values between model 1 and model 2 for activity matching algorithms.
+
+    Args:
+          model1 (Tuple[PetriNet, Marking, Marking]): Petri Net 1.
+          model2 (Tuple[PetriNet, Marking, Marking]): Petri Net 2.
+          siml (dict(Tuple[str, str] -> float)): Initial Label Similarity
+          Result between both models.
+          a (float): Parameter which defines what ratio of the end result
+          should be influenced by similarity resonance.
+          k (int): Granularity of neighbourhood. Radius of what should be
+                considered a neighbour of an activity.
+          l_thresh (float): Likelihood threshold to define what is a good
+                match.
+
+    Returns:
+          dict (Tuple[str, str] -> float): Similarity Resonance vector.
+    """
 
     # convert empty labels to invisible transitions
     clean_transitions(model1[0])
